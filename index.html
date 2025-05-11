@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>广东艾默森科技有限公司 | Guangdong Emerson Technology Co., Ltd.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <!-- 顶部横幅 / Header -->
+  <header class="bg-blue-800 text-white relative">
+    <div class="container mx-auto p-6">
+      <h1 class="text-3xl font-bold lang-zh">广东艾默森科技有限公司</h1>
+      <h1 class="text-3xl font-bold lang-en hidden">Guangdong Emerson Technology Co., Ltd.</h1>
+
+      <p class="text-lg mt-2 lang-zh">使命：为客户提供最优解决方案</p>
+      <p class="text-lg mt-2 italic lang-en hidden">Mission: Providing optimal solutions for our customers</p>
+    </div>
+    <!-- 语言切换按钮 / Language Toggle Button -->
+    <button id="langBtn" onclick="toggleLang()" class="absolute top-4 right-4 bg-white/20 backdrop-blur rounded-full px-4 py-1 text-sm hover:bg-white/30 transition">
+      English
+    </button>
+  </header>
+
+  <!-- 主体内容 / Main -->
+  <main class="container mx-auto p-6">
+    <section class="bg-white rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-semibold mb-4 lang-zh">公司介绍</h2>
+      <h2 class="text-2xl font-semibold mb-4 lang-en hidden">Company Introduction</h2>
+
+      <p class="mb-6 lang-zh">广东艾默森科技有限公司致力于通过创新科技和专业服务，为客户量身定制行业领先的综合解决方案。</p>
+      <p class="mb-6 lang-en hidden">Guangdong Emerson Technology Co., Ltd. leverages cutting‑edge technologies and professional services to deliver industry‑leading, tailor‑made integrated solutions for our clients.</p>
+
+      <!-- 视频播放区 / Video Section -->
+      <h2 class="text-2xl font-semibold mb-4 lang-zh">宣传视频</h2>
+      <h2 class="text-2xl font-semibold mb-4 lang-en hidden">Promotional Video</h2>
+
+      <video class="w-full rounded-lg" controls poster="poster.jpg">
+        <source src="video.mp4" type="video/mp4" />
+        <span class="lang-zh">您的浏览器不支持 HTML5 视频播放，请下载视频观看。</span>
+        <span class="lang-en hidden">Your browser does not support HTML5 video. Please download the video to watch it.</span>
+      </video>
+    </section>
+  </main>
+
+  <!-- 页脚 / Footer -->
+  <footer class="bg-blue-800 text-white mt-12">
+    <div class="container mx-auto p-4 text-center">
+      <p class="lang-zh">© 2025 广东艾默森科技有限公司. 版权所有</p>
+      <p class="lang-en hidden">© 2025 Guangdong Emerson Technology Co., Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 语言切换脚本 / Language Toggle Script -->
+  <script>
+    function toggleLang() {
+      const isZh = document.documentElement.lang === 'zh-CN';
+      document.documentElement.lang = isZh ? 'en' : 'zh-CN';
+      document.querySelectorAll('.lang-zh').forEach(el => el.classList.toggle('hidden'));
+      document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('hidden'));
+      document.getElementById('langBtn').textContent = isZh ? '中文' : 'English';
+    }
+  </script>
+</body>
+</html>
