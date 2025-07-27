@@ -1,66 +1,622 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <title>广东艾默森科技有限公司 | Guangdong Emerson Technology Co., Ltd.</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aiwason | 智能光电母线系统领导者</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'aiwason-green': '#00D2AA',
+                        'aiwason-dark': '#0A0A0A',
+                        'aiwason-gray': '#1A1A1A',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #00D2AA, #00FF94);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 50%, #0A0A0A 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 210, 170, 0.2);
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <!-- 顶部横幅 / Header -->
-  <header class="bg-blue-800 text-white relative">
-    <div class="container mx-auto p-6">
-      <h1 class="text-3xl font-bold lang-zh">广东艾默森科技有限公司</h1>
-      <h1 class="text-3xl font-bold lang-en hidden">Guangdong Emerson Technology Co., Ltd.</h1>
-
-      <p class="text-lg mt-2 lang-zh">使命：为客户提供最优解决方案</p>
-      <p class="text-lg mt-2 italic lang-en hidden">Mission: Providing optimal solutions for our customers</p>
+<body class="bg-aiwason-dark text-white overflow-x-hidden">
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay">
+        <div class="text-center">
+            <div class="loading-spinner mb-4"></div>
+            <h2 class="text-2xl font-bold gradient-text">AIWASON</h2>
+            <p class="text-gray-400 mt-2">Loading...</p>
+        </div>
     </div>
-    <!-- 语言切换按钮 / Language Toggle Button -->
-    <button id="langBtn" onclick="toggleLang()" class="absolute top-4 right-4 bg-white/20 backdrop-blur rounded-full px-4 py-1 text-sm hover:bg-white/30 transition">
-      English
-    </button>
-  </header>
 
-  <!-- 主体内容 / Main -->
-  <main class="container mx-auto p-6">
-    <section class="bg-white rounded-xl shadow-lg p-8">
-      <h2 class="text-2xl font-semibold mb-4 lang-zh">公司介绍</h2>
-      <h2 class="text-2xl font-semibold mb-4 lang-en hidden">Company Introduction</h2>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-aiwason-dark/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold gradient-text">AIWASON</h1>
+                    </div>
+                    <div class="hidden md:block ml-10">
+                        <div class="flex items-baseline space-x-8">
+                            <a href="#home" class="hover:text-aiwason-green transition-colors">首页</a>
+                            <a href="#products" class="hover:text-aiwason-green transition-colors">产品</a>
+                            <a href="#solutions" class="hover:text-aiwason-green transition-colors">解决方案</a>
+                            <a href="#technology" class="hover:text-aiwason-green transition-colors">技术</a>
+                            <a href="#about" class="hover:text-aiwason-green transition-colors">关于我们</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="langBtn" onclick="toggleLang()" class="px-4 py-2 border border-aiwason-green text-aiwason-green hover:bg-aiwason-green hover:text-black transition-all">
+                        EN
+                    </button>
+                    <button class="bg-aiwason-green text-black px-6 py-2 rounded-md hover:bg-green-400 transition-colors">
+                        <span class="lang-zh">联系我们</span>
+                        <span class="lang-en hidden">Contact</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-      <p class="mb-6 lang-zh">广东艾默森科技有限公司致力于通过创新科技和专业服务，为客户量身定制行业领先的综合解决方案。</p>
-      <p class="mb-6 lang-en hidden">Guangdong Emerson Technology Co., Ltd. leverages cutting‑edge technologies and professional services to deliver industry‑leading, tailor‑made integrated solutions for our clients.</p>
-
-      <!-- 视频播放区 / Video Section -->
-      <h2 class="text-2xl font-semibold mb-4 lang-zh">宣传视频</h2>
-      <h2 class="text-2xl font-semibold mb-4 lang-en hidden">Promotional Video</h2>
-
-      <video class="w-full rounded-lg" controls poster="poster.jpg">
-        <source src="Ems/Ems.mp4" type="video/mp4" />
-        <span class="lang-zh">您的浏览器不支持 HTML5 视频播放，请下载视频观看。</span>
-        <span class="lang-en hidden">Your browser does not support HTML5 video. Please download the video to watch it.</span>
-      </video>
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+        <div class="hero-bg-pattern"></div>
+        <div class="particles" id="particles"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-aiwason-green/10 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-up">
+                    <h1 class="text-5xl lg:text-7xl font-bold mb-6">
+                        <span class="lang-zh">智能光电</span>
+                        <span class="lang-en hidden">Intelligent</span>
+                        <br>
+                        <span class="gradient-text">
+                            <span class="lang-zh">母线系统</span>
+                            <span class="lang-en hidden">Optical Busbar</span>
+                        </span>
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8 max-w-2xl">
+                        <span class="lang-zh">引领未来电力传输革命，Aiwason智能光电母线系统为数据中心、工业制造和智能建筑提供高效、安全、智能的电力解决方案。</span>
+                        <span class="lang-en hidden">Leading the future of power transmission revolution. Aiwason intelligent optical busbar systems provide efficient, safe, and smart power solutions for data centers, industrial manufacturing, and smart buildings.</span>
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-aiwason-green text-black px-8 py-4 rounded-md text-lg font-semibold hover:bg-green-400 transition-all transform hover:scale-105">
+                            <span class="lang-zh">了解产品</span>
+                            <span class="lang-en hidden">Explore Products</span>
+                        </button>
+                        <button class="border-2 border-aiwason-green text-aiwason-green px-8 py-4 rounded-md text-lg font-semibold hover:bg-aiwason-green hover:text-black transition-all">
+                            <span class="lang-zh">观看演示</span>
+                            <span class="lang-en hidden">Watch Demo</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="relative animate-float">
+                    <div class="w-full h-96 bg-gradient-to-br from-aiwason-green/20 to-blue-500/20 rounded-2xl flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="w-32 h-32 bg-aiwason-green/30 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <svg class="w-16 h-16 text-aiwason-green" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold gradient-text">
+                                <span class="lang-zh">智能核心</span>
+                                <span class="lang-en hidden">Smart Core</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <!-- 页脚 / Footer -->
-  <footer class="bg-blue-800 text-white mt-12">
-    <div class="container mx-auto p-4 text-center">
-      <p class="lang-zh">© 2025 广东艾默森科技有限公司. 版权所有</p>
-      <p class="lang-en hidden">© 2025 Guangdong Emerson Technology Co., Ltd. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- Products Section -->
+    <section id="products" class="py-20 bg-aiwason-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                    <span class="lang-zh">产品系列</span>
+                    <span class="lang-en hidden">Product Series</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    <span class="lang-zh">从数据中心到工业制造，从智能建筑到新能源设施，Aiwason提供全方位的智能光电母线解决方案</span>
+                    <span class="lang-en hidden">From data centers to industrial manufacturing, from smart buildings to renewable energy facilities, Aiwason provides comprehensive intelligent optical busbar solutions</span>
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="rounded-2xl p-8 card-enhanced">
+                    <div class="w-16 h-16 bg-aiwason-green/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-aiwason-green" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">
+                        <span class="lang-zh">数据中心系列</span>
+                        <span class="lang-en hidden">Data Center Series</span>
+                    </h3>
+                    <p class="text-gray-300 mb-6">
+                        <span class="lang-zh">专为数据中心设计的高密度、高效率光电母线系统，支持热插拔和智能监控。</span>
+                        <span class="lang-en hidden">High-density, high-efficiency optical busbar systems designed specifically for data centers, supporting hot-swapping and intelligent monitoring.</span>
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li class="lang-zh">• 功率密度: 50kW/m</li>
+                        <li class="lang-en hidden">• Power Density: 50kW/m</li>
+                        <li class="lang-zh">• 效率: >99%</li>
+                        <li class="lang-en hidden">• Efficiency: >99%</li>
+                        <li class="lang-zh">• 智能监控</li>
+                        <li class="lang-en hidden">• Smart Monitoring</li>
+                    </ul>
+                                 </div>
+ 
+                 <div class="rounded-2xl p-8 card-enhanced">
+                     <div class="w-16 h-16 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">
+                        <span class="lang-zh">工业制造系列</span>
+                        <span class="lang-en hidden">Industrial Series</span>
+                    </h3>
+                    <p class="text-gray-300 mb-6">
+                        <span class="lang-zh">适用于恶劣工业环境的重载光电母线系统，具备防尘、防腐蚀和抗震动特性。</span>
+                        <span class="lang-en hidden">Heavy-duty optical busbar systems suitable for harsh industrial environments, featuring dust-proof, corrosion-resistant, and vibration-resistant characteristics.</span>
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li class="lang-zh">• 防护等级: IP65</li>
+                        <li class="lang-en hidden">• Protection Rating: IP65</li>
+                        <li class="lang-zh">• 工作温度: -40°C~85°C</li>
+                        <li class="lang-en hidden">• Operating Temperature: -40°C~85°C</li>
+                        <li class="lang-zh">• 抗震动设计</li>
+                        <li class="lang-en hidden">• Vibration Resistant</li>
+                    </ul>
+                                 </div>
+ 
+                 <div class="rounded-2xl p-8 card-enhanced">
+                     <div class="w-16 h-16 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">
+                        <span class="lang-zh">智能建筑系列</span>
+                        <span class="lang-en hidden">Smart Building Series</span>
+                    </h3>
+                    <p class="text-gray-300 mb-6">
+                        <span class="lang-zh">为现代智能建筑量身定制的美观、高效光电母线系统，支持IoT集成和能源管理。</span>
+                        <span class="lang-en hidden">Aesthetically pleasing and efficient optical busbar systems tailored for modern smart buildings, supporting IoT integration and energy management.</span>
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li class="lang-zh">• IoT集成</li>
+                        <li class="lang-en hidden">• IoT Integration</li>
+                        <li class="lang-zh">• 能源管理</li>
+                        <li class="lang-en hidden">• Energy Management</li>
+                        <li class="lang-zh">• 美观设计</li>
+                        <li class="lang-en hidden">• Aesthetic Design</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- 语言切换脚本 / Language Toggle Script -->
-  <script>
-    function toggleLang() {
-      const isZh = document.documentElement.lang === 'zh-CN';
-      document.documentElement.lang = isZh ? 'en' : 'zh-CN';
-      document.querySelectorAll('.lang-zh').forEach(el => el.classList.toggle('hidden'));
-      document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('hidden'));
-      document.getElementById('langBtn').textContent = isZh ? '中文' : 'English';
-    }
-  </script>
+    <!-- Technology Section -->
+    <section id="technology" class="py-20 bg-aiwason-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl lg:text-5xl font-bold mb-8">
+                        <span class="lang-zh">核心技术</span>
+                        <span class="lang-en hidden">Core Technology</span>
+                    </h2>
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-aiwason-green/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <span class="text-aiwason-green font-bold">01</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">
+                                    <span class="lang-zh">光电融合技术</span>
+                                    <span class="lang-en hidden">Optical-Electrical Integration</span>
+                                </h3>
+                                <p class="text-gray-300">
+                                    <span class="lang-zh">独创的光电融合传输技术，实现电力传输与数据通信的完美结合，传输效率提升30%。</span>
+                                    <span class="lang-en hidden">Proprietary optical-electrical integration technology that perfectly combines power transmission with data communication, improving transmission efficiency by 30%.</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-aiwason-green/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <span class="text-aiwason-green font-bold">02</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">
+                                    <span class="lang-zh">智能监控系统</span>
+                                    <span class="lang-en hidden">Intelligent Monitoring</span>
+                                </h3>
+                                <p class="text-gray-300">
+                                    <span class="lang-zh">基于AI的实时监控系统，可预测性维护，故障检测准确率达99.9%。</span>
+                                    <span class="lang-en hidden">AI-based real-time monitoring system with predictive maintenance capabilities, achieving 99.9% fault detection accuracy.</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-aiwason-green/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <span class="text-aiwason-green font-bold">03</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">
+                                    <span class="lang-zh">模块化设计</span>
+                                    <span class="lang-en hidden">Modular Design</span>
+                                </h3>
+                                <p class="text-gray-300">
+                                    <span class="lang-zh">标准化模块设计，支持热插拔，安装时间减少70%，维护成本降低50%。</span>
+                                    <span class="lang-en hidden">Standardized modular design supporting hot-swapping, reducing installation time by 70% and maintenance costs by 50%.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="w-full h-96 bg-gradient-to-br from-aiwason-green/10 to-blue-500/10 rounded-2xl flex items-center justify-center">
+                        <div class="tech-grid">
+                            <div class="tech-item bg-aiwason-green/30"></div>
+                            <div class="tech-item bg-blue-500/30"></div>
+                            <div class="tech-item bg-purple-500/30"></div>
+                            <div class="tech-item bg-yellow-500/30"></div>
+                            <div class="tech-item bg-aiwason-green/50"></div>
+                            <div class="tech-item bg-red-500/30"></div>
+                            <div class="tech-item bg-green-500/30"></div>
+                            <div class="tech-item bg-pink-500/30"></div>
+                            <div class="tech-item bg-indigo-500/30"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-20 bg-aiwason-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                    <span class="lang-zh">解决方案</span>
+                    <span class="lang-en hidden">Solutions</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    <span class="lang-zh">针对不同行业和应用场景，提供定制化的智能光电母线解决方案</span>
+                    <span class="lang-en hidden">Providing customized intelligent optical busbar solutions for different industries and application scenarios</span>
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-black/30 rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-aiwason-green/20 to-blue-500/20"></div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-4">
+                            <span class="lang-zh">数据中心解决方案</span>
+                            <span class="lang-en hidden">Data Center Solutions</span>
+                        </h3>
+                        <p class="text-gray-300 mb-6">
+                            <span class="lang-zh">为超大规模数据中心提供高密度、高可靠性的电力分配解决方案，支持动态负载调整和智能运维。</span>
+                            <span class="lang-en hidden">Providing high-density, high-reliability power distribution solutions for hyperscale data centers, supporting dynamic load adjustment and intelligent operations.</span>
+                        </p>
+                        <button class="text-aiwason-green hover:text-green-400 font-semibold">
+                            <span class="lang-zh">了解更多 →</span>
+                            <span class="lang-en hidden">Learn More →</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-black/30 rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20"></div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-4">
+                            <span class="lang-zh">智能制造解决方案</span>
+                            <span class="lang-en hidden">Smart Manufacturing Solutions</span>
+                        </h3>
+                        <p class="text-gray-300 mb-6">
+                            <span class="lang-zh">为工业4.0时代的智能工厂提供灵活、可靠的电力基础设施，支持生产线的快速重配置。</span>
+                            <span class="lang-en hidden">Providing flexible and reliable power infrastructure for smart factories in the Industry 4.0 era, supporting rapid reconfiguration of production lines.</span>
+                        </p>
+                        <button class="text-aiwason-green hover:text-green-400 font-semibold">
+                            <span class="lang-zh">了解更多 →</span>
+                            <span class="lang-en hidden">Learn More →</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-aiwason-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                    <span class="lang-zh">关于Aiwason</span>
+                    <span class="lang-en hidden">About Aiwason</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto">
+                    <span class="lang-zh">Aiwason致力于成为全球智能光电母线系统的领导者，通过持续创新和技术突破，为客户创造更大价值，推动行业向更智能、更高效、更可持续的方向发展。</span>
+                    <span class="lang-en hidden">Aiwason is committed to becoming the global leader in intelligent optical busbar systems. Through continuous innovation and technological breakthroughs, we create greater value for customers and drive the industry towards a more intelligent, efficient, and sustainable future.</span>
+                </p>
+            </div>
+
+                         <div class="grid md:grid-cols-3 gap-8 text-center">
+                 <div>
+                     <div class="stat-number text-4xl font-bold gradient-text mb-2" data-target="500" data-suffix="+">0+</div>
+                     <p class="text-gray-300">
+                         <span class="lang-zh">全球项目</span>
+                         <span class="lang-en hidden">Global Projects</span>
+                     </p>
+                 </div>
+                 <div>
+                     <div class="stat-number text-4xl font-bold gradient-text mb-2" data-target="99" data-suffix=".9%">0.0%</div>
+                     <p class="text-gray-300">
+                         <span class="lang-zh">系统可靠性</span>
+                         <span class="lang-en hidden">System Reliability</span>
+                     </p>
+                 </div>
+                 <div>
+                     <div class="stat-number text-4xl font-bold gradient-text mb-2" data-target="50" data-suffix="+">0+</div>
+                     <p class="text-gray-300">
+                         <span class="lang-zh">技术专利</span>
+                         <span class="lang-en hidden">Technical Patents</span>
+                     </p>
+                 </div>
+             </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold gradient-text mb-4">AIWASON</h3>
+                    <p class="text-gray-400 mb-4">
+                        <span class="lang-zh">智能光电母线系统领导者</span>
+                        <span class="lang-en hidden">Leader in Intelligent Optical Busbar Systems</span>
+                    </p>
+                    <div class="flex space-x-4">
+                        <div class="w-10 h-10 bg-aiwason-green/20 rounded-full flex items-center justify-center">
+                            <span class="text-aiwason-green">f</span>
+                        </div>
+                        <div class="w-10 h-10 bg-aiwason-green/20 rounded-full flex items-center justify-center">
+                            <span class="text-aiwason-green">t</span>
+                        </div>
+                        <div class="w-10 h-10 bg-aiwason-green/20 rounded-full flex items-center justify-center">
+                            <span class="text-aiwason-green">in</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">
+                        <span class="lang-zh">产品</span>
+                        <span class="lang-en hidden">Products</span>
+                    </h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><span class="lang-zh">数据中心系列</span><span class="lang-en hidden">Data Center Series</span></li>
+                        <li><span class="lang-zh">工业制造系列</span><span class="lang-en hidden">Industrial Series</span></li>
+                        <li><span class="lang-zh">智能建筑系列</span><span class="lang-en hidden">Smart Building Series</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">
+                        <span class="lang-zh">解决方案</span>
+                        <span class="lang-en hidden">Solutions</span>
+                    </h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><span class="lang-zh">数据中心</span><span class="lang-en hidden">Data Centers</span></li>
+                        <li><span class="lang-zh">智能制造</span><span class="lang-en hidden">Smart Manufacturing</span></li>
+                        <li><span class="lang-zh">智能建筑</span><span class="lang-en hidden">Smart Buildings</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">
+                        <span class="lang-zh">联系我们</span>
+                        <span class="lang-en hidden">Contact</span>
+                    </h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>info@aiwason.com</li>
+                        <li>+86 400-123-4567</li>
+                        <li><span class="lang-zh">中国深圳</span><span class="lang-en hidden">Shenzhen, China</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Aiwason. <span class="lang-zh">版权所有</span><span class="lang-en hidden">All rights reserved</span>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Loading Animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loading = document.getElementById('loading');
+                loading.classList.add('fade-out');
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Particle System
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Number Counter Animation
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target + (element.dataset.suffix || '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start) + (element.dataset.suffix || '');
+                }
+            }, 16);
+        }
+
+        // Language Toggle
+        let isEnglish = false;
+        function toggleLang() {
+            isEnglish = !isEnglish;
+            document.documentElement.lang = isEnglish ? 'en' : 'zh-CN';
+            document.querySelectorAll('.lang-zh').forEach(el => {
+                el.classList.toggle('hidden', isEnglish);
+            });
+            document.querySelectorAll('.lang-en').forEach(el => {
+                el.classList.toggle('hidden', !isEnglish);
+            });
+            document.getElementById('langBtn').textContent = isEnglish ? '中文' : 'EN';
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    
+                    // Animate statistics numbers
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        if (!stat.dataset.animated) {
+                            stat.dataset.animated = 'true';
+                            const target = parseInt(stat.dataset.target);
+                            animateCounter(stat, target);
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Initialize everything on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            // Observe sections for animation
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Add navigation enhancement class
+            const nav = document.querySelector('nav');
+            nav.classList.add('nav-enhanced');
+
+            // Add nav-link class to navigation links
+            document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+                link.classList.add('nav-link');
+            });
+        });
+
+        // Scroll-based navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop <= 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-aiwason-green');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('text-aiwason-green');
+                }
+            });
+        });
+
+        // Add enhanced button classes
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('button').forEach(btn => {
+                if (btn.classList.contains('bg-aiwason-green')) {
+                    btn.classList.add('btn-primary');
+                } else if (btn.classList.contains('border-aiwason-green')) {
+                    btn.classList.add('btn-secondary');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
